@@ -1,0 +1,23 @@
+Eden;Hazard;Red Devils
+Harry;Kane;Three Lions
+Romelu;Lukaku;Red Devils
+Kalvin;Philips;Three Lions
+Jesse;Lingard;Three Lions
+Kevin;De Bruyne;Red Devils
+Jeremy;Doku;Red Devils
+Thibaut;Courtois;Red Devils
+Marcus;Rashford;Three Lions
+Raheem;Sterling;Three Lions
+Harry;Maguire;Three Lions
+Alexis;Saelemaekers;Red Devils
+Michy;Batshuayi;Red Devils
+Charles;De Ketelaere;Red Devils
+Yannick;Carrasco;Red Devils
+Bukayo;Saka;Three Lions
+Mason;Mount;Three Lions
+Phil;Foden;Three Lions
+Jason;Sancho;Three Lions
+Thorgan;Hazard;Red Devils
+Axel;Witsel;Red Devils
+Jack;Grealish;Three Lions
+
