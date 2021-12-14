@@ -5,35 +5,27 @@ namespace Voetbal.Models
     public class Speler
     {
         // constructors
-        public Speler() : this(
-            voornaam: "",
+        public Speler() : this(voornaam: "",
             familienaam: "",
             ploeg: "")
-        {
+        { }
 
-        }
-
-        public Speler(
-            string voornaam,
+        public Speler(string voornaam,
             string familienaam,
-            string ploeg) : this(
-                voornaam: voornaam,
+            string ploeg) : this(voornaam: voornaam,
                 familienaam: familienaam,
                 ploeg: ploeg,
                 aantalDoelpogingen: 0,
                 aantalDoelpunten: 0,
                 aantalSpeelminuten: 0)
-        {
-
-        }
+        { }
 
         public Speler(string voornaam,
             string familienaam,
             string ploeg,
             Int32 aantalDoelpunten,
             Int32 aantalDoelpogingen,
-            Int32 aantalSpeelminuten
-            )
+            Int32 aantalSpeelminuten)
         {
             Voornaam = voornaam;
             Familienaam = familienaam;
@@ -59,10 +51,12 @@ namespace Voetbal.Models
 
             return IsPoint;
         }
+
         public void SpeelminutenToevoegen(Int32 speelminuten)
         {
             AantalSpeelMinuten += speelminuten;
         }
+
         public string ToonInfo() =>
             ToString() + "\n" +
             $"Doelpogingen: {AantalDoelPogingen}\n" +
@@ -88,7 +82,8 @@ namespace Voetbal.Models
         public Int32 AantalSpeelMinuten
         {
             get => _aantalSpeelMinuten;
-            set => _aantalSpeelMinuten = value < 0 ? 0 : value;
+            set => _aantalSpeelMinuten = value > 0 ?
+                value : 0;
         }
 
         public string Familienaam
@@ -116,6 +111,6 @@ namespace Voetbal.Models
         private string _familienaam;
         private string _ploeg;
         private string _voornaam;
-        public readonly Random _rnd = new Random();
+        private readonly Random _rnd = new Random();
     }
 }

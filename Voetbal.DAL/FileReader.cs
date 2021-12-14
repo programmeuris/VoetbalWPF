@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Voetbal.Models;
 
 namespace Voetbal.DAL
@@ -22,26 +21,23 @@ namespace Voetbal.DAL
             {
                 var lines = ReadArr(fName);
 
-
-
                 foreach (var line in lines)
                 {
                     if (!string.IsNullOrWhiteSpace(line))
                     {
                         var split = line.Split(';');
 
-                        string vnaam = split[0];
-                        string fnaam = split[1];
-                        string ploeg = split[2];
+                        var baller = new Speler(split[0],
+                            split[1],
+                            split[2]);
 
-                        var baller = new Speler(vnaam, fnaam, ploeg);
                         spelers.Add(baller);
                     }
                 }
             }
             catch (Exception genEx)
             {
-                string msg = genEx.Message;
+                //string msg = genEx.Message;
                 return null;
             }
 

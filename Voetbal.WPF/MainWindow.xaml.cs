@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+// using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Voetbal.Models;
 using Voetbal.DAL;
 
@@ -45,11 +36,15 @@ namespace Voetbal.WPF
             var allSpelers = _reader.ReadSpelersToList(fName);
 
             // get ploegnamen
+            // HashSet only accepts unique entries
+            // so we end up with the two teams as they only get added once
             HashSet<string> ploegSet = new HashSet<string>();
             foreach (var speler in allSpelers)
             {
                 ploegSet.Add(speler.Ploeg);
             }
+
+            // copy HashSet to array because HashSets can't be iterated
             var ploegenArr = new string[ploegSet.Count];
             ploegSet.CopyTo(ploegenArr);
 
@@ -78,6 +73,7 @@ namespace Voetbal.WPF
             lstSpelers.SelectedIndex = -1;
             _currentlySelectedPlayer = null;
 
+            // load ploeg in to listbox
             lstSpelers.ItemsSource = null;
             lstSpelers.ItemsSource = cbo.SelectedIndex == 0 ?
                 _ploeg1 : _ploeg2;
@@ -119,28 +115,29 @@ namespace Voetbal.WPF
         {
             string msg = "Gelieve een speler te selecteren.";
             var btn = sender as Button;
-            switch (btn.Name)
+
+            // test for selected player
+            if (_currentlySelectedPlayer != null)
             {
-                case "btnAddMinutes":
-                    if (_currentlySelectedPlayer != null)
-                    {
+                // test which button was pressed
+                switch (btn.Name)
+                {
+                    case "btnAddMinutes":
                         if (Int32.TryParse(txtMinuten.Text, out Int32 minuten))
                         {
                             _currentlySelectedPlayer.SpeelminutenToevoegen(minuten);
                             txtMinuten.Text = "";
                             UpdateLabel();
-                            // no messagebox at this state
+                            // no message needed at this state
                             return;
                         }
                         else
                         {
+                            // set relevant error message
                             msg = "Speelminuten moet een numerieke waarde zijn!";
                         }
-                    }
-                    break;
-                case "btnSchieten":
-                    if (_currentlySelectedPlayer != null)
-                    {
+                        break;
+                    case "btnSchieten":
                         if (_currentlySelectedPlayer.SchietOpDoel())
                         {
                             msg = $"{_currentlySelectedPlayer.ToString()} heeft gescoord!";
@@ -150,10 +147,11 @@ namespace Voetbal.WPF
                             msg = "De bal ging er naast.";
                         }
                         UpdateLabel();
-                    }
-                    break;
+                        break;
+                }
             }
-
+            
+            // always shows except when successfully adding minutes to a player
             MessageBox.Show(msg);
         }
     }

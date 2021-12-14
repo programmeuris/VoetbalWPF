@@ -19,7 +19,6 @@
         </Grid.ColumnDefinitions>
         <ComboBox x:Name="cboPloegen"
                   SelectionChanged="CboPloegen_SelectionChanged"
-                  DisplayMemberPath=""
                   Grid.Row="0"
                   Grid.Column="0"/>
         <ListBox x:Name="lstSpelers"
