@@ -140,7 +140,7 @@ namespace Voetbal.WPF
                     case "btnSchieten":
                         if (_currentlySelectedPlayer.SchietOpDoel())
                         {
-                            msg = $"{_currentlySelectedPlayer.ToString()} heeft gescoord!";
+                            msg = $"{_currentlySelectedPlayer} heeft gescoord!";
                         }
                         else
                         {
